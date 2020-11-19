@@ -4,9 +4,14 @@ import tictactoe.TicTacToeBoard;
 
 import java.util.Scanner;
 
-public class HumanPlayer implements Player {
+public class HumanPlayer extends Player {
+    public HumanPlayer(TicTacToeBoard board) {
+        super(board);
+        this.board = board;
+    }
+
     @Override
-    public void makeMove(TicTacToeBoard board) {
+    public void makeMove() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Enter the coordinates: ");

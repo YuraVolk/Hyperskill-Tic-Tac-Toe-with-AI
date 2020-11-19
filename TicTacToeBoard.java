@@ -113,6 +113,10 @@ public class TicTacToeBoard {
         return false;
     }
 
+    public void undo(int row, int col) {
+        board[row][col] = '_';
+    }
+
     public List<String> getAvailableCells() {
         List<String> cells = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
@@ -126,3 +130,4 @@ public class TicTacToeBoard {
         return cells;
     }
 }
+

@@ -1,9 +1,6 @@
 package tictactoe;
 
-import tictactoe.controllers.EasyComputerPlayer;
-import tictactoe.controllers.HumanPlayer;
-import tictactoe.controllers.MediumComputerPlayer;
-import tictactoe.controllers.Player;
+import tictactoe.controllers.*;
 
 public class GameController {
     private final Player playerOne;
@@ -11,19 +8,21 @@ public class GameController {
     private final TicTacToeBoard board;
 
     public GameController(String playerOne, String playerTwo) {
+        this.board = new TicTacToeBoard();
         this.playerOne = getClassByName(playerOne);
         this.playerTwo = getClassByName(playerTwo);
-        this.board = new TicTacToeBoard();
     }
 
     private Player getClassByName(String name) {
         switch (name) {
             case "user":
-                return new HumanPlayer();
+                return new HumanPlayer(board);
             case "easy":
-                return new EasyComputerPlayer();
+                return new EasyComputerPlayer(board);
             case "medium":
-                return new MediumComputerPlayer();
+                return new MediumComputerPlayer(board);
+            case "hard":
+                return new HardComputerPlayer(board);
         }
 
         return null;
@@ -32,7 +31,7 @@ public class GameController {
     public void startGame() {
         board.printBoard();
         while (true) {
-            playerOne.makeMove(board);
+            playerOne.makeMove();
             board.printBoard();
             if (board.checkForWin()) {
                 System.out.printf("%s wins\n\n", board.getCurrentPlayerMark());
@@ -43,7 +42,7 @@ public class GameController {
             }
             board.changePlayer();
 
-            playerTwo.makeMove(board);
+            playerTwo.makeMove();
             board.printBoard();
             if (board.checkForWin()) {
                 System.out.printf("%s wins\n\n", board.getCurrentPlayerMark());

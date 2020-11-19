@@ -5,9 +5,13 @@ import tictactoe.TicTacToeBoard;
 import java.util.List;
 import java.util.Random;
 
-public class MediumComputerPlayer implements Player {
-    private TicTacToeBoard board;
+public class MediumComputerPlayer extends Player {
     private boolean isMoveMade = false;
+
+    public MediumComputerPlayer(TicTacToeBoard board) {
+        super(board);
+        this.board = board;
+    }
 
     private void processTwoInRow(int a1, int a2, int b1, int b2, int c1, int c2) {
         if (!board.placeMark(a1, a2)) {
@@ -59,10 +63,9 @@ public class MediumComputerPlayer implements Player {
     }
 
     @Override
-    public void makeMove(TicTacToeBoard baseBoard) {
+    public void makeMove() {
         isMoveMade = false;
         System.out.println("Making move level \"medium\"");
-        this.board = baseBoard;
         checkForTwoInRow(board.getCurrentPlayerMark());
 
         char enemyMark;
@@ -74,7 +77,6 @@ public class MediumComputerPlayer implements Player {
         }
         checkForTwoInRow(enemyMark);
 
-        System.out.println(isMoveMade);
         if (!isMoveMade) {
             List<String> moves = board.getAvailableCells();
             String move = moves.get(new Random().nextInt(moves.size()));

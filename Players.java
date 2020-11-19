@@ -3,7 +3,8 @@ package tictactoe;
 public enum Players {
     PLAYER("user"),
     EASY_COMPUTER("easy"),
-    MEDIUM_COMPUTER("medium");
+    MEDIUM_COMPUTER("medium"),
+    HARD_COMPUTER("hard");
 
     private final String text;
 

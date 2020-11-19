@@ -1,7 +1,14 @@
 package tictactoe.controllers;
 
+
 import tictactoe.TicTacToeBoard;
 
-public interface Player {
-    void makeMove(TicTacToeBoard board);
+public abstract class Player {
+    TicTacToeBoard board;
+
+    public Player(TicTacToeBoard board) {
+        this.board = board;
+    }
+
+    abstract public void makeMove();
 }
